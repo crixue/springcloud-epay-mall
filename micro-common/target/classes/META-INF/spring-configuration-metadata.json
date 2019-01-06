@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.micro.common.properties.CustomProperties",
+      "name": "custom",
+      "type": "org.micro.common.properties.CustomProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.micro.common.properties.CustomProperties",
+      "name": "custom.rocketmq-namesrv",
+      "type": "java.lang.String"
+    }
+  ]
+}

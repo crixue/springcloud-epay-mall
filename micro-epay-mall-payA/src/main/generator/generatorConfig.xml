@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.fanshan.lib.common.mapper.MyBaseMapper"/>
+        </plugin>
+
+        <!--根据具体情况修改数据库配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://39.106.140.222:3306/fsdb_customer"
+                        userId="fscp_dev"
+                        password="fscp@dev"/>
+
+        <!--根据具体情况修改子模块java实体文件包名，com.fanshan.biz.customer.xxx.model -->
+        <javaModelGenerator targetPackage="com.fanshan.biz.customer.yys.model" targetProject="${targetJavaProject}"/>
+        <!--根据具体情况修改子模块java文件包名，mapper/xxx -->
+        <sqlMapGenerator targetPackage="mapper/yys" targetProject="${targetResourcesProject}"/>
+        <!--根据具体情况修改子模块java mapper文件包名，com.fanshan.biz.customer.xxx.mapper -->
+        <javaClientGenerator targetPackage="com.fanshan.biz.customer.yys.mapper" targetProject="${targetJavaProject}"
+                             type="XMLMAPPER"/>
+
+        <!--根据具体情况修改表名和实体名称，t_xxx_yyy -->
+		<table tableName="t_wash_operation_info" domainObjectName="WashOperationInfo">
+
+        </table>
+
+        <!--<table tableName="t_customer_credit_info" domainObjectName="CustomerCreditInfo">-->
+
+        <!--</table>-->
+        <!--<table tableName="t_yys_base_info" domainObjectName="YysBaseInfo">-->
+
+        <!--</table>-->
+        <!--<table tableName="t_yys_bill_info" domainObjectName="YysBillInfo">-->
+
+        <!--</table>-->
+        <!--<table tableName="t_yys_call_info" domainObjectName="YysCallInfo">-->
+
+        <!--</table>-->
+        <!--<table tableName="t_yys_call_info_record" domainObjectName="YysCallInfoRecord">-->
+
+        <!--</table>-->
+        <!--<table tableName="t_customer_yys_base" domainObjectName="CustomerYysBase">-->
+
+        <!--</table>-->
+    </context>
+</generatorConfiguration>

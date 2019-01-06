@@ -1,0 +1,24 @@
+server:
+  port: 9104
+ 
+logging:
+  level:
+    root: info
+    org.micro.epay.mall.payA: debug
+    
+spring:
+  application:
+    name: micro-epay-mall-payA
+  cloud:
+    config:
+      uri: http://config:8888/
+      profile: dev
+      name: common
+
+mybatis:
+  type-aliases-package: org.micro.epay.mall.payA.pojo
+  mapper-locations:
+  - classpath*:mapper/*Mapper.xml
+      
+rocketmq:
+  namesrv: 192.168.2.110:9876;192.168.2.111:9876   

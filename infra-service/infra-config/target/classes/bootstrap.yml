@@ -1,0 +1,32 @@
+server:
+  port: 8888
+
+eureka:
+  instance:
+    hostname: discovery
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+      
+spring:
+  application:
+    name: micro-config-server
+  cloud:
+    config:
+      profile: dev
+      name: common
+      server:
+        git:
+          uri: https://github.com/crixue/config-repo-epay-mall/
+#          password: configserver
+#          username: configserver
+#          search-paths: fscloud-platform/
+
+logging:
+  level:
+    ROOT: info
+    
+encrypt:
+  key: epay-mall    
+

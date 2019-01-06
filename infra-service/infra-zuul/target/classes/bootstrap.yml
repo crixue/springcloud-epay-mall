@@ -1,0 +1,48 @@
+server:
+    port: 9103
+
+logging:
+  level:
+    com.netflix: debug
+
+spring:
+  application:
+    name: infra-zuul
+  cloud:
+    config:
+      uri: http://config:8888/
+      profile: dev
+      name: common,infra-zuul-dev
+#      username: user
+#      password: ${CONFIG_SERVER_PASSWORD:password}
+
+zuul:
+  ignoredServices: '*'  #通过配置此选项，限制不能通过访问服务名去访问微服务
+  add-host-header: true
+  routes:
+    user:
+      path: /user/**
+      sensitiveHeaders:
+
+    category:
+      path: /category/**
+      sensitiveHeaders:
+
+    product:
+      path: /product/**
+      sensitiveHeaders:
+
+    payA:
+      path: /payA/**
+      service-id: micro-epay-mall-payA
+      sensitiveHeaders:
+
+  host:
+    connect-timeout-millis: 60000
+
+ribbon:  
+  #请求处理的超时时间
+  ReadTimeout: 60000 
+  #ribbon请求连接的超时时间 
+  ConnectTimeout: 60000
+  MaxAutoRetries: 1

@@ -1,0 +1,8 @@
+org\micro\common\properties\CustomServer.class
+org\micro\common\response\ResponseCodeEnum.class
+org\micro\common\properties\CustomProperties.class
+org\micro\common\config\CustomAutoConfig.class
+org\micro\common\response\ServerResponse.class
+META-INF\spring-configuration-metadata.json
+org\micro\common\App.class
+org\micro\common\mapper\MyBaseMapper.class
