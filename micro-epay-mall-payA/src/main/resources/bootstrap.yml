@@ -20,5 +20,3 @@ mybatis:
   mapper-locations:
   - classpath*:mapper/*Mapper.xml
       
-rocketmq:
-  namesrv: 192.168.2.110:9876;192.168.2.111:9876   

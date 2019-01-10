@@ -1,14 +1,14 @@
 server:
-  port: 9104
+  port: 9105
  
 logging:
   level:
     root: info
-    org.micro.epay.mall.payA: debug
+    org.micro.epay.mall: debug
     
 spring:
   application:
-    name: micro-epay-mall-payA
+    name: micro-epay-mall-order
   cloud:
     config:
       uri: http://config:8888/
@@ -16,7 +16,7 @@ spring:
       name: common
 
 mybatis:
-  type-aliases-package: org.micro.epay.mall.payA.pojo
+  type-aliases-package: org.micro.epay.mall.order.pojo
   mapper-locations:
   - classpath*:mapper/*Mapper.xml
       

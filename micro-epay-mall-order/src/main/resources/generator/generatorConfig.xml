@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="org.micro.common.mapper.MyBaseMapper"/>
+        </plugin>
+
+        <!--根据具体情况修改数据库配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.2.110:3306/mmall?characterEncoding=utf-8"
+                        userId="xrj"
+                        password="123456"/>
+
+        <!--根据具体情况修改子模块java实体文件包名，com.fanshan.biz.customer.xxx.model -->
+        <javaModelGenerator targetPackage="org.micro.epay.mall.order.pojo" targetProject="micro-epay-mall-order/src/main/java"/>
+        <!--根据具体情况修改子模块java文件包名，mapper/xxx -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="micro-epay-mall-order/src/main/resources"/>
+        <!--根据具体情况修改子模块java mapper文件包名，com.fanshan.biz.customer.xxx.mapper -->
+        <javaClientGenerator targetPackage="org.micro.epay.mall.payA.mapper" targetProject="micro-epay-mall-order/src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--根据具体情况修改表名和实体名称，t_xxx_yyy -->
+		<table tableName="mmall_order" domainObjectName="Order">
+        </table>
+        <table tableName="mmall_pay_info" domainObjectName="PayInfo">
+        </table>
+        <table tableName="mmall_refund_info" domainObjectName="RefundInfo">
+        </table>
+    </context>
+</generatorConfiguration>
