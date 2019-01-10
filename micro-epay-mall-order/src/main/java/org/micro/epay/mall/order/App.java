@@ -8,12 +8,12 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.ComponentScan;
 
-@MapperScan(basePackages="org.micro.epay.mall.payA.mapper.*")
+@MapperScan(basePackages="org.micro.epay.mall.order.mapper.*")
 @SpringCloudApplication
 @EnableFeignClients
 @EnableHystrix
 @EnableAutoConfiguration
-@ComponentScan(basePackages="org.micro.epay.mall.payA")
+@ComponentScan(basePackages="org.micro.epay.mall.order")
 public class App 
 {
 	public static void main(String[] args) {

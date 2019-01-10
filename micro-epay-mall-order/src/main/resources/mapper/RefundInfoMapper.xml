@@ -1,23 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.micro.epay.mall.order.mapper.RefundInfoMapper">
-  <resultMap id="BaseResultMap" type="org.micro.epay.mall.order.RefundInfo">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="order_no" jdbcType="BIGINT" property="orderNo" />
-    <result column="pay_platform" jdbcType="INTEGER" property="payPlatform" />
-    <result column="platform_number" jdbcType="VARCHAR" property="platformNumber" />
-    <result column="platform_user_id" jdbcType="VARCHAR" property="platformUserId" />
-    <result column="buy_login_id" jdbcType="VARCHAR" property="buyLoginId" />
-    <result column="refund_status" jdbcType="VARCHAR" property="refundStatus" />
-    <result column="refund_fee" jdbcType="DECIMAL" property="refundFee" />
-    <result column="app_id" jdbcType="VARCHAR" property="appId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="refund_reason" jdbcType="VARCHAR" property="refundReason" />
-    <result column="refund_detail_desc" jdbcType="LONGVARCHAR" property="refundDetailDesc" />
-  </resultMap>
 </mapper>

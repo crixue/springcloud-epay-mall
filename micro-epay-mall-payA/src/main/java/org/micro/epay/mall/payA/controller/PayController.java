@@ -17,7 +17,7 @@ public class PayController {
 	@GetMapping("/mockPay")
 	public ServerResponse<String> mockPay() {
 		return ServerResponse.createBySucessResReturnData(
-				payService.payment("1", "1492091141269", "22", new Double(22.00)));
+				payService.payment("1", "111", "22", new Double(22.00)));
 		
 	}
 	
