@@ -32,17 +32,24 @@ zuul:
       path: /product/**
       sensitiveHeaders:
 
+    order:
+      path: /order/**
+      service-id: micro-epay-mall-order
+      sensitiveHeaders:
+
     payA:
       path: /payA/**
       service-id: micro-epay-mall-payA
       sensitiveHeaders:
+      
+    payB:
+      path: /payB/**
+      service-id: micro-epay-mall-payB
+      sensitiveHeaders:
 
+    package:
+      path: /package/**
+      service-id: micro-epay-mall-package
+      sensitiveHeaders:
   host:
     connect-timeout-millis: 60000
-
-ribbon:  
-  #请求处理的超时时间
-  ReadTimeout: 60000 
-  #ribbon请求连接的超时时间 
-  ConnectTimeout: 60000
-  MaxAutoRetries: 1
