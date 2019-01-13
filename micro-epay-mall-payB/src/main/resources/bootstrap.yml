@@ -1,0 +1,25 @@
+server:
+  port: 9106
+ 
+logging:
+  level:
+    root: info
+    org.micro.epay.mall.payA: debug
+    
+spring:
+  application:
+    name: micro-epay-mall-payB
+  cloud:
+    config:
+      uri: http://config:8888/
+      profile: dev
+      name: common
+
+feign:
+  httpclient:
+    connection-timeout: 10000
+
+mybatis:
+  type-aliases-package: org.micro.epay.mall.payB.pojo
+  mapper-locations:
+  - classpath*:mapper/*Mapper.xml
