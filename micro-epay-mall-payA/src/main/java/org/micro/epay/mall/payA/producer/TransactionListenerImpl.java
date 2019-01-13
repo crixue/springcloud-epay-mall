@@ -32,9 +32,9 @@ public class TransactionListenerImpl implements TransactionListener{
 		System.err.println("----执行本地事务单元----");
 		try {
 			Map<String, Object> params = (Map<String, Object>) arg;
-			String userId = (String)params.get("userId");
-			String accountId = (String)params.get("accountId");
-			String orderId = (String)params.get("orderId");
+			String userId = (String)params.get("userId");  //付款人id
+			String accountId = (String)params.get("accountId");  //收款人id
+			String orderId = (String)params.get("orderId");  //orderNo
 			BigDecimal payMoney = (BigDecimal)params.get("payMoney");	//	当前的支付款
 			BigDecimal newBalance = (BigDecimal)params.get("newBalance");	//	前置扣款成功的余额
 			int currentVersion = (int)params.get("currentVersion");

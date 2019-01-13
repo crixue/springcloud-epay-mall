@@ -14,10 +14,10 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
-	@GetMapping("/mockPay")
-	public ServerResponse<String> mockPay() {
+	@RequestMapping("/mockPay")
+	public ServerResponse<String> mockPay(String userId, String orderId, String accountId, double money) {
 		return ServerResponse.createBySucessResReturnData(
-				payService.payment("1", "111", "22", new Double(22.00)));
+				payService.payment(userId, orderId, accountId, money));
 		
 	}
 	

@@ -18,6 +18,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * 分布式事务
+ * @author crixue
+ *
+ */
 @Component
 public class TransactionProducer implements InitializingBean{
 	
