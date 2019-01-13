@@ -15,6 +15,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.micro.common.constant.Const;
 import org.micro.epay.mall.order.mapper.OrderMapper;
 import org.micro.epay.mall.order.pojo.Order;
+import org.micro.epay.mall.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,9 @@ public class OrderConsumer {
 	
 	@Autowired
 	private OrderMapper orderMapper;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	public OrderConsumer() throws MQClientException {
 		consumer = new DefaultMQPushConsumer(CONUSMER_GROUP);
@@ -55,7 +59,7 @@ public class OrderConsumer {
 				String msgBody = new String(msg.getBody(), "utf-8");
 				String tags = msg.getTags();
 				String keys = msg.getKeys();	
-				log.debug("收到消息：" + "  topic :" + topic + "  ,tags : " + tags + "keys :" + keys + ", msg : " + msgBody);
+				log.debug("收到消息需要更新订单状态的消息：" + "  topic :" + topic + "  ,tags : " + tags + "keys :" + keys + ", msg : " + msgBody);
 				String orignMsgId = msg.getProperties().get(MessageConst.PROPERTY_ORIGIN_MESSAGE_ID);
 				log.debug("orignMsgId: " + orignMsgId);
 				
@@ -65,16 +69,23 @@ public class OrderConsumer {
 				String status = (String)body.get("status");
 				
 				Order changedOrder = new Order();
-				changedOrder.setId(Integer.valueOf(orderId));
+				changedOrder.setOrderNo(Long.valueOf(orderId));
 				changedOrder.setUserId(Integer.valueOf(userId));
-				changedOrder.setStatus(Integer.valueOf(status));
-				
-				int ret = orderMapper.updateByPrimaryKeySelective(changedOrder);
-				if(ret == 1) {
-					//订单包裹进行投递
+				changedOrder = orderMapper.selectOne(changedOrder);
+				if (changedOrder == null || changedOrder.getId() == null) {
+					log.error("不存在创建的订单");
+					return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
 				}
 				
-			} catch (UnsupportedEncodingException e) {
+				changedOrder.setStatus(Integer.valueOf(status));
+				int ret = orderMapper.updateByPrimaryKeySelective(changedOrder);
+				if(ret == 1) {
+					log.info("已成功将投递订单{}的状态更新为已付款，下一步将信息投递到包裹处理服务", orderId);
+					//订单包裹进行投递
+					orderService.sendOrderlyMessage4Pkg(userId, orderId);
+				}
+				
+			} catch (Exception e) {
 				e.printStackTrace();
 				return ConsumeConcurrentlyStatus.RECONSUME_LATER;
 			}

@@ -15,6 +15,10 @@ spring:
       profile: dev
       name: common
 
+feign:
+  httpclient:
+    connection-timeout: 10000
+    
 mybatis:
   type-aliases-package: org.micro.epay.mall.order.pojo
   mapper-locations:
