@@ -1,0 +1,19 @@
+server:
+  port: 8325
+
+spring:
+  application:
+    name: hystrix-dashboard-turbine
+    
+  cloud:
+    config:
+      uri: http://config:8888/
+      profile: dev
+      name: common
+      
+turbine:
+  app-config: micro-epay-mall-payA,micro-epay-mall-payB,micro-epay-mall-order,micro-epay-mall-package
+  aggregator:
+    cluster-config: default        
+  cluster-name-expression: "default"  
+  
