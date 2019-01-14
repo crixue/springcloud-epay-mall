@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: discovery-ha
+
+---
+spring:
+  profiles:
+    active:
+    - peer1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: discovery
+    prefer-ip-address: true
+  client:
+    # 注册中心不需要注册自己
+    registerWithEureka: false
+    # 注册中心也不需要检索服务
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://peer2:8762/eureka/
+
+---
+spring:
+  profiles:
+    active:
+    - peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: discovery-ha
+    prefer-ip-address: true
+  client:
+    # 注册中心不需要注册自己
+    registerWithEureka: false
+    # 注册中心也不需要检索服务
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://peer1:8761/eureka/ 
