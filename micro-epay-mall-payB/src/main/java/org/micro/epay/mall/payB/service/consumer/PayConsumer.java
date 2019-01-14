@@ -1,6 +1,5 @@
 package org.micro.epay.mall.payB.service.consumer;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -70,7 +69,7 @@ public class PayConsumer {
 				String orderId = (String)paramsBody.get("orderId");	// 	统一的订单
 				BigDecimal money = (BigDecimal)paramsBody.get("money");	//	当前的收益款
 				
-				//消息过来后首先做数据库对同一主键去重，保证幂等性
+				//消息过来后首先通过keys（唯一的）做数据库对同一主键去重，保证幂等性
 				Order order = iOrderFeignClient.getOrderByOrderNo(orderId).getData();
 				if (order != null && order.getStatus() == 30) {
 					log.warn("当前订单{}已收款成功，请勿重复下单", orderId);
