@@ -17,6 +17,7 @@
 		<module>infra-discovery</module>
 		<module>infra-zuul</module>
 		<module>infra-monitor</module>
+		<module>infra-discovery-ha</module>
   </modules>
 
 	<dependencies>
